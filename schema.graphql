@@ -1,0 +1,4 @@
+type MyContractSchema @entity {
+  id: ID!
+  amount: Int!
+}

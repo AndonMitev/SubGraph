@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+description: My test project on Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MyContract
+    network: ropsten
+    source:
+      address: "0x1E7b64044A60696E9eEECe5B4814aFa8FE03E6Ba"
+      abi: MyContract
+      startBlock: 7625048
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - MyContractSchema
+      abis:
+        - name: MyContract
+          file: ./abis/MyContract.json
+      eventHandlers:
+        - event: NewDeposit(address,uint256,uint256)
+          handler: handleNewDeposit
+      file: ./src/mapping.ts
